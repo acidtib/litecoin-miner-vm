@@ -8,10 +8,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "hashicorp/precise32"
 
-  config.vm.network :bridged
+  config.vm.network "public_network"
 
   #set the memory to 512mb
-  config.vm.customize ["modifyvm", :id, "--memory", "512"]
+  config.vm.provider "virtualbox" do |vb|
+    # Don't boot with headless mode
+    vb.gui = false
+  
+    vb.customize ["modifyvm", :id, "--memory", "512"]
+  end
 
   #run build.sh for configuration
   config.vm.provision :shell, :path => "build.sh"
