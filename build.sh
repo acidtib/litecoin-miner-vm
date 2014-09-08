@@ -9,4 +9,4 @@ git clone https://github.com/pooler/cpuminer.git
 cd cpuminer
 ./autogen.sh
 ./configure CFLAGS="-O3"
-make
+make install
